@@ -8,6 +8,7 @@
 
 #import "CreateViewController.h"
 #import <Photos/Photos.h>
+#import <MapKit/MapKit.h>
 
 @interface CreateViewController ()
 @property (strong, nonatomic) IBOutlet UIView *view;
@@ -37,7 +38,17 @@
             imageView.image = image;
             [self.view addSubview:imageView];
         }];
-        NSLog(@"%@", asset.location);
+        if (asset.location) {
+            CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+            [geocoder reverseGeocodeLocation:asset.location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+                CLPlacemark *placemark = placemarks[0];
+                NSLog(@"%@", asset.location);
+                NSLog(@"%@", placemark.subLocality);
+            }];
+        } else {
+            
+            NSLog(@"No geotag");
+        }
     }
     
 }
