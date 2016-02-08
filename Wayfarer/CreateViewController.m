@@ -10,6 +10,7 @@
 #import <Photos/Photos.h>
 
 @interface CreateViewController ()
+@property (strong, nonatomic) IBOutlet UIView *view;
 
 @end
 
@@ -20,11 +21,23 @@
 
     //TESTING RETRIEVING IMAGES
     NSDate *todayStart = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
-    PHFetchOptions *fetchOptions = [PHFetchOptions new];
+    PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
     fetchOptions.predicate = [NSPredicate predicateWithFormat:@"creationDate >= %@", todayStart];
     PHFetchResult *fetchResult = [PHAsset fetchAssetsWithOptions:fetchOptions];
     NSLog(@"%@", todayStart);
     NSLog(@"%@", fetchResult);
+    
+    PHImageManager *imageManager = [[PHImageManager alloc] init];
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.resizeMode = PHImageRequestOptionsDeliveryModeFastFormat;
+    for (PHAsset *asset in fetchResult) {
+        [imageManager requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+            UIImage *image = [[UIImage alloc] initWithData:imageData];
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 200, 200)];
+            imageView.image = image;
+            [self.view addSubview:imageView];
+        }];
+    }
     
 }
 

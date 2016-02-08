@@ -84,6 +84,9 @@
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="view" destination="9M4-oz-B1Z" id="6ba-bt-0vk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iXM-hn-ro3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
