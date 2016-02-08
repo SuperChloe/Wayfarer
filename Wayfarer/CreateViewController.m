@@ -7,6 +7,7 @@
 //
 
 #import "CreateViewController.h"
+#import <Photos/Photos.h>
 
 @interface CreateViewController ()
 
@@ -16,12 +17,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    //TESTING RETRIEVING IMAGES
+    NSDate *todayStart = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
+    PHFetchOptions *fetchOptions = [PHFetchOptions new];
+    fetchOptions.predicate = [NSPredicate predicateWithFormat:@"creationDate >= %@", todayStart];
+    PHFetchResult *fetchResult = [PHAsset fetchAssetsWithOptions:fetchOptions];
+    NSLog(@"%@", todayStart);
+    NSLog(@"%@", fetchResult);
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*
