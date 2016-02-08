@@ -37,6 +37,7 @@
             imageView.image = image;
             [self.view addSubview:imageView];
         }];
+        NSLog(@"%@", asset.location);
     }
     
 }
