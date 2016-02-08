@@ -9,7 +9,7 @@
 #import <Realm/Realm.h>
 
 @interface Entry : RLMObject
-<# Add properties here to define the model #>
+@property NSDate *date;
 @end
 
 // This protocol enables typed collections. i.e.:
