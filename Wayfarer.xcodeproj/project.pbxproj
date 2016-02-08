@@ -15,6 +15,10 @@
 		89F7914E1C69138C004DC2FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F7914D1C69138C004DC2FD /* Assets.xcassets */; };
 		89F791511C69138C004DC2FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89F7914F1C69138C004DC2FD /* LaunchScreen.storyboard */; };
 		89F7915A1C691543004DC2FD /* EntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791591C691543004DC2FD /* EntryTableViewCell.m */; };
+		89F7915D1C6917F4004DC2FD /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F7915C1C6917F4004DC2FD /* Entry.m */; };
+		89F791601C691801004DC2FD /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F7915F1C691801004DC2FD /* Photo.m */; };
+		89F791631C69186E004DC2FD /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791621C69186E004DC2FD /* CreateViewController.m */; };
+		89F791661C69187D004DC2FD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791651C69187D004DC2FD /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +37,14 @@
 		89F791521C69138C004DC2FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89F791581C691543004DC2FD /* EntryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryTableViewCell.h; sourceTree = "<group>"; };
 		89F791591C691543004DC2FD /* EntryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryTableViewCell.m; sourceTree = "<group>"; };
+		89F7915B1C6917F4004DC2FD /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
+		89F7915C1C6917F4004DC2FD /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
+		89F7915E1C691801004DC2FD /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		89F7915F1C691801004DC2FD /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		89F791611C69186E004DC2FD /* CreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
+		89F791621C69186E004DC2FD /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
+		89F791641C69187D004DC2FD /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		89F791651C69187D004DC2FD /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +92,16 @@
 				89F791451C69138C004DC2FD /* AppDelegate.m */,
 				89F791471C69138C004DC2FD /* ViewController.h */,
 				89F791481C69138C004DC2FD /* ViewController.m */,
+				89F791611C69186E004DC2FD /* CreateViewController.h */,
+				89F791621C69186E004DC2FD /* CreateViewController.m */,
+				89F791641C69187D004DC2FD /* DetailViewController.h */,
+				89F791651C69187D004DC2FD /* DetailViewController.m */,
 				89F791581C691543004DC2FD /* EntryTableViewCell.h */,
 				89F791591C691543004DC2FD /* EntryTableViewCell.m */,
+				89F7915B1C6917F4004DC2FD /* Entry.h */,
+				89F7915C1C6917F4004DC2FD /* Entry.m */,
+				89F7915E1C691801004DC2FD /* Photo.h */,
+				89F7915F1C691801004DC2FD /* Photo.m */,
 				89F7914A1C69138C004DC2FD /* Main.storyboard */,
 				89F7914D1C69138C004DC2FD /* Assets.xcassets */,
 				89F7914F1C69138C004DC2FD /* LaunchScreen.storyboard */,
@@ -230,7 +250,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89F791601C691801004DC2FD /* Photo.m in Sources */,
 				89F7915A1C691543004DC2FD /* EntryTableViewCell.m in Sources */,
+				89F7915D1C6917F4004DC2FD /* Entry.m in Sources */,
+				89F791661C69187D004DC2FD /* DetailViewController.m in Sources */,
+				89F791631C69186E004DC2FD /* CreateViewController.m in Sources */,
 				89F791491C69138C004DC2FD /* ViewController.m in Sources */,
 				89F791461C69138C004DC2FD /* AppDelegate.m in Sources */,
 				89F791431C69138C004DC2FD /* main.m in Sources */,

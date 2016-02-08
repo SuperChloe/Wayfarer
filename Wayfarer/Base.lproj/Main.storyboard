@@ -28,20 +28,66 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="W7o-kt-ZOf" kind="show" identifier="entryDetail" id="dEl-N1-BW2"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="JH7-VW-xkO"/>
+                    <navigationItem key="navigationItem" id="JH7-VW-xkO">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cIy-Eo-iXo">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="cPT-uN-xjJ" kind="show" identifier="createNew" id="VA4-fr-TgX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="43G-Gl-aM9" id="Bki-1o-QaF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057" y="302"/>
+            <point key="canvasLocation" x="899" y="-390"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="YiN-R0-XSh">
+            <objects>
+                <viewController id="W7o-kt-ZOf" customClass="DetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Txq-2f-npC"/>
+                        <viewControllerLayoutGuide type="bottom" id="0W0-Mf-Jce"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k6u-qU-aUa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5t3-8u-0yO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1603" y="-59"/>
+        </scene>
+        <!--Create View Controller-->
+        <scene sceneID="mNl-NT-g6T">
+            <objects>
+                <viewController id="cPT-uN-xjJ" customClass="CreateViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="u8W-jq-s32"/>
+                        <viewControllerLayoutGuide type="bottom" id="m1f-ce-cXE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="du3-9Q-BoP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kAM-rj-tRM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1603" y="-761"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DAE-ce-AW2">
