@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D2CC82246438261BB36D5AF /* libPods-Wayfarer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 703A3C71B332AAF7A2E28C5B /* libPods-Wayfarer.a */; };
 		89F791431C69138C004DC2FD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791421C69138C004DC2FD /* main.m */; };
 		89F791461C69138C004DC2FD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791451C69138C004DC2FD /* AppDelegate.m */; };
 		89F791491C69138C004DC2FD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791481C69138C004DC2FD /* ViewController.m */; };
 		89F7914C1C69138C004DC2FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89F7914A1C69138C004DC2FD /* Main.storyboard */; };
 		89F7914E1C69138C004DC2FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F7914D1C69138C004DC2FD /* Assets.xcassets */; };
 		89F791511C69138C004DC2FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89F7914F1C69138C004DC2FD /* LaunchScreen.storyboard */; };
+		89F7915A1C691543004DC2FD /* EntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791591C691543004DC2FD /* EntryTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49D346B45CD962DC4ECEFC99 /* Pods-Wayfarer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfarer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfarer/Pods-Wayfarer.debug.xcconfig"; sourceTree = "<group>"; };
+		569871FE152A3D1363490923 /* Pods-Wayfarer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfarer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfarer/Pods-Wayfarer.release.xcconfig"; sourceTree = "<group>"; };
+		703A3C71B332AAF7A2E28C5B /* libPods-Wayfarer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wayfarer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F7913E1C69138C004DC2FD /* Wayfarer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wayfarer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F791421C69138C004DC2FD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		89F791441C69138C004DC2FD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,6 +31,8 @@
 		89F7914D1C69138C004DC2FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89F791501C69138C004DC2FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89F791521C69138C004DC2FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89F791581C691543004DC2FD /* EntryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryTableViewCell.h; sourceTree = "<group>"; };
+		89F791591C691543004DC2FD /* EntryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +40,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D2CC82246438261BB36D5AF /* libPods-Wayfarer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00E0770590E9DAA8F071BE88 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				703A3C71B332AAF7A2E28C5B /* libPods-Wayfarer.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		89F791351C69138B004DC2FD = {
 			isa = PBXGroup;
 			children = (
 				89F791401C69138C004DC2FD /* Wayfarer */,
 				89F7913F1C69138C004DC2FD /* Products */,
+				C6BDF1C042CFC2E7FE07194E /* Pods */,
+				00E0770590E9DAA8F071BE88 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +80,8 @@
 				89F791451C69138C004DC2FD /* AppDelegate.m */,
 				89F791471C69138C004DC2FD /* ViewController.h */,
 				89F791481C69138C004DC2FD /* ViewController.m */,
+				89F791581C691543004DC2FD /* EntryTableViewCell.h */,
+				89F791591C691543004DC2FD /* EntryTableViewCell.m */,
 				89F7914A1C69138C004DC2FD /* Main.storyboard */,
 				89F7914D1C69138C004DC2FD /* Assets.xcassets */,
 				89F7914F1C69138C004DC2FD /* LaunchScreen.storyboard */,
@@ -79,6 +99,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C6BDF1C042CFC2E7FE07194E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				49D346B45CD962DC4ECEFC99 /* Pods-Wayfarer.debug.xcconfig */,
+				569871FE152A3D1363490923 /* Pods-Wayfarer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +115,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89F791551C69138C004DC2FD /* Build configuration list for PBXNativeTarget "Wayfarer" */;
 			buildPhases = (
+				B55C0980DAE20F325254DEE2 /* Check Pods Manifest.lock */,
 				89F7913A1C69138B004DC2FD /* Sources */,
 				89F7913B1C69138B004DC2FD /* Frameworks */,
 				89F7913C1C69138B004DC2FD /* Resources */,
+				65835910AC056E1F3E626524 /* Embed Pods Frameworks */,
+				EDFB02FE282E143B202C2943 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -145,11 +177,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		65835910AC056E1F3E626524 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wayfarer/Pods-Wayfarer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B55C0980DAE20F325254DEE2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EDFB02FE282E143B202C2943 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wayfarer/Pods-Wayfarer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		89F7913A1C69138B004DC2FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89F7915A1C691543004DC2FD /* EntryTableViewCell.m in Sources */,
 				89F791491C69138C004DC2FD /* ViewController.m in Sources */,
 				89F791461C69138C004DC2FD /* AppDelegate.m in Sources */,
 				89F791431C69138C004DC2FD /* main.m in Sources */,
@@ -260,6 +341,7 @@
 		};
 		89F791561C69138C004DC2FD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49D346B45CD962DC4ECEFC99 /* Pods-Wayfarer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Wayfarer/Info.plist;
@@ -271,6 +353,7 @@
 		};
 		89F791571C69138C004DC2FD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 569871FE152A3D1363490923 /* Pods-Wayfarer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Wayfarer/Info.plist;
@@ -299,6 +382,7 @@
 				89F791571C69138C004DC2FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
