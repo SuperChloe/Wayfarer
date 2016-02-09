@@ -6,15 +6,16 @@
 //  Copyright © 2016 Chloe Horgan. All rights reserved.
 //
 
-#import "CreateViewController.h"
 #import <Photos/Photos.h>
 #import <MapKit/MapKit.h>
+#import "CreateViewController.h"
+#import "CreateTableViewCell.h"
+#import "Photo.h"
 
-@interface CreateViewController ()
-@property (strong, nonatomic) IBOutlet UIView *view;
+@interface CreateViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) NSMutableDictionary *locationDictionary;
-@property (strong, nonatomic) NSMutableArray *placemarksArray;
 @property (strong, nonatomic) PHFetchResult *fetchResult;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -23,10 +24,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
     self.locationDictionary = [[NSMutableDictionary alloc] init];
-    self.placemarksArray = [[NSMutableArray alloc] init];
-
-    //TESTING RETRIEVING IMAGES
     [self imageRequest];
 }
 
@@ -34,13 +35,41 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Helper methods
+#pragma mark - Table View methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.locationDictionary.allKeys.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CreateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CreateCell" forIndexPath:indexPath];
+    NSArray *sortedKeys = [self.locationDictionary.allKeys sortedArrayUsingSelector:@selector(compare:)];
+    NSArray *images = [self.locationDictionary objectForKey:sortedKeys[indexPath.row]];
+    Photo *photo = [[Photo alloc] init];
+    photo.photo = images[0];
+    photo.location = sortedKeys[indexPath.row];
+    NSLog(@"%@", photo.photo);
+    NSLog(@"%@", photo.location);
+
+    cell.imageView.image = [UIImage imageWithData:photo.photo];
+    cell.textView.text = photo.location;
+    return cell;
+}
+
+
+#pragma mark - Retrieving image/location methods
 
 - (void)imageRequest {
+    //Fetch todays photos
     NSDate *todayStart = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
     PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
     fetchOptions.predicate = [NSPredicate predicateWithFormat:@"creationDate >= %@", todayStart];
     self.fetchResult = [PHAsset fetchAssetsWithOptions:fetchOptions];
+    //Get image data
     PHImageManager *imageManager = [[PHImageManager alloc] init];
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     options.resizeMode = PHImageRequestOptionsDeliveryModeFastFormat;
@@ -61,20 +90,11 @@
                 [weakSelf.locationDictionary setObject:[[NSMutableArray alloc] init] forKey:placemarks[0].subLocality];
             }
             NSMutableArray *images = [weakSelf.locationDictionary valueForKey:placemarks[0].subLocality];
-            [images addObject:[UIImage imageWithData:imageData]];
+            [images addObject:imageData];
+            [self.tableView reloadData];
         }];
     }
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

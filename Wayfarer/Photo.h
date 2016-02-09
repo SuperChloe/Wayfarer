@@ -7,11 +7,14 @@
 //
 
 #import <Realm/Realm.h>
-#import <UIKit/UIKit.h>
+#import "Entry.h"
 
 @interface Photo : RLMObject
-@property UIImage *photo;
+
+@property NSData *photo;
 @property NSString *location;
+@property Entry *entry;
+
 @end
 
 // This protocol enables typed collections. i.e.:

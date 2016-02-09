@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Wayfarer-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
@@ -50,7 +50,7 @@
                             <constraint firstItem="43G-Gl-aM9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="znK-Wv-TRO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="JH7-VW-xkO">
+                    <navigationItem key="navigationItem" title="Wayfarer" id="JH7-VW-xkO">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cIy-Eo-iXo">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -66,7 +66,7 @@
             </objects>
             <point key="canvasLocation" x="899" y="-390"/>
         </scene>
-        <!--Title-->
+        <!--Create Entry-->
         <scene sceneID="kmz-Pe-UjG">
             <objects>
                 <viewController id="Vfp-7h-te8" customClass="CreateViewController" sceneMemberID="viewController">
@@ -77,22 +77,59 @@
                     <view key="view" contentMode="scaleToFill" id="9M4-oz-B1Z">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="502" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HLI-qf-Ix1">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateCell" rowHeight="502" id="hrL-PE-sIw" customClass="CreateTableViewCell">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="502"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hrL-PE-sIw" id="wmx-wc-dJt">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="502"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mh8-9t-Gae">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="450"/>
+                                                </imageView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Caption" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ab4-pH-13A">
+                                                    <rect key="frame" x="0.0" y="458" width="600" height="44"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="photoView" destination="Mh8-9t-Gae" id="w26-YI-QIV"/>
+                                            <outlet property="textView" destination="Ab4-pH-13A" id="19o-IJ-Guw"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="HLI-qf-Ix1" secondAttribute="trailing" id="Mkq-Ss-VyH"/>
+                            <constraint firstItem="HLI-qf-Ix1" firstAttribute="leading" secondItem="9M4-oz-B1Z" secondAttribute="leading" id="UEw-Vq-18x"/>
+                            <constraint firstItem="HLI-qf-Ix1" firstAttribute="top" secondItem="9M4-oz-B1Z" secondAttribute="top" id="siP-Bw-iv5"/>
+                            <constraint firstItem="SQY-wP-fVg" firstAttribute="top" secondItem="HLI-qf-Ix1" secondAttribute="bottom" id="skB-H3-KH2"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="PdR-bI-046">
+                    <navigationItem key="navigationItem" title="Create Entry" id="PdR-bI-046">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="yKs-sI-tLG">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="view" destination="9M4-oz-B1Z" id="6ba-bt-0vk"/>
+                        <outlet property="tableView" destination="HLI-qf-Ix1" id="gd2-M2-8Nn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iXM-hn-ro3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1582" y="-836"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Entry Detail-->
         <scene sceneID="YiN-R0-XSh">
             <objects>
                 <viewController id="W7o-kt-ZOf" customClass="DetailViewController" sceneMemberID="viewController">
@@ -105,6 +142,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Entry Detail" id="Pgf-rz-6OR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5t3-8u-0yO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -118,6 +156,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2MX-FP-CWH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
