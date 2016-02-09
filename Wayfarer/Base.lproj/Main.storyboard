@@ -17,28 +17,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="101" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="43G-Gl-aM9">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="135" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="43G-Gl-aM9">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="EntryCell" rowHeight="101" id="HrZ-UK-t1P" customClass="EntryTableViewCell">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="101"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="EntryCell" rowHeight="135" id="HrZ-UK-t1P" customClass="EntryTableViewCell">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HrZ-UK-t1P" id="jVB-5l-bKh">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="134"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Testing label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oW1-al-rKE">
-                                                    <rect key="frame" x="0.0" y="8" width="325" height="28"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XFO-i6-zco">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="134"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oW1-al-rKE">
+                                                    <rect key="frame" x="94" y="48" width="413" height="37"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="413" id="NPI-Ij-21o"/>
+                                                        <constraint firstAttribute="height" constant="37" id="qnr-Ay-WeC"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="XFO-i6-zco" firstAttribute="leading" secondItem="jVB-5l-bKh" secondAttribute="leading" id="0MU-bO-TU7"/>
+                                                <constraint firstAttribute="trailing" secondItem="XFO-i6-zco" secondAttribute="trailing" id="0Ra-vU-Mgq"/>
+                                                <constraint firstItem="XFO-i6-zco" firstAttribute="top" secondItem="jVB-5l-bKh" secondAttribute="top" id="7Az-eS-G0X"/>
+                                                <constraint firstAttribute="bottom" secondItem="XFO-i6-zco" secondAttribute="bottom" id="Doe-du-aUV"/>
+                                                <constraint firstItem="oW1-al-rKE" firstAttribute="top" secondItem="jVB-5l-bKh" secondAttribute="top" constant="48" id="TX2-QK-tLd"/>
+                                                <constraint firstItem="oW1-al-rKE" firstAttribute="centerY" secondItem="jVB-5l-bKh" secondAttribute="centerY" id="aiw-Sg-KkN"/>
+                                                <constraint firstItem="oW1-al-rKE" firstAttribute="leading" secondItem="jVB-5l-bKh" secondAttribute="leading" constant="94" id="lXR-rB-JIe"/>
+                                                <constraint firstAttribute="trailing" secondItem="oW1-al-rKE" secondAttribute="trailing" constant="93" id="qNe-UE-WCy"/>
+                                                <constraint firstAttribute="bottom" secondItem="oW1-al-rKE" secondAttribute="bottom" constant="49" id="rtA-Qi-mFe"/>
+                                                <constraint firstItem="oW1-al-rKE" firstAttribute="centerX" secondItem="jVB-5l-bKh" secondAttribute="centerX" id="vVs-rp-LvZ"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="TX2-QK-tLd"/>
+                                                    <exclude reference="lXR-rB-JIe"/>
+                                                    <exclude reference="qNe-UE-WCy"/>
+                                                    <exclude reference="rtA-Qi-mFe"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="testingLabel" destination="oW1-al-rKE" id="1V7-5S-tdo"/>
+                                            <outlet property="dateLabel" destination="oW1-al-rKE" id="ho3-n2-qOB"/>
+                                            <outlet property="entryPreview" destination="XFO-i6-zco" id="Nog-4V-QgO"/>
                                             <segue destination="W7o-kt-ZOf" kind="show" identifier="entryDetail" id="dEl-N1-BW2"/>
                                         </connections>
                                     </tableViewCell>

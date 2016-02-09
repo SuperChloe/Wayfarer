@@ -10,6 +10,7 @@
 
 @interface EntryTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *testingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *entryPreview;
 
 @end
