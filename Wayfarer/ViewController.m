@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "DetailViewController.h"
 #import "EntryTableViewCell.h"
 #import "Entry.h"
 
@@ -38,8 +39,12 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"entryDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Entry *entry = self.sortedEntries[indexPath.row];
+        DetailViewController *controller = (DetailViewController *)[segue destinationViewController];
+        controller.entry = entry;
+    }
 }
 
 

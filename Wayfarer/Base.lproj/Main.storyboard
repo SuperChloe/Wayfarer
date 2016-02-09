@@ -174,16 +174,16 @@
         <scene sceneID="YiN-R0-XSh">
             <objects>
                 <viewController id="W7o-kt-ZOf" customClass="DetailViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="491" sectionHeaderHeight="28" sectionFooterHeight="28" id="gJ2-Ql-CeX">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="491" sectionHeaderHeight="28" sectionFooterHeight="28" id="gJ2-Ql-CeX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="491" id="5GN-Sz-fyz" customClass="DetailTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailCell" rowHeight="491" id="5GN-Sz-fyz" customClass="DetailTableViewCell">
                                 <rect key="frame" x="0.0" y="92" width="600" height="491"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5GN-Sz-fyz" id="Vv7-tc-cuL">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="490"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="491"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N9T-Xw-gtS">
@@ -193,7 +193,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1s-3x-Y6w">
-                                            <rect key="frame" x="0.0" y="451" width="600" height="39"/>
+                                            <rect key="frame" x="0.0" y="451" width="600" height="40"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="10"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -209,6 +209,10 @@
                                         <constraint firstItem="N9T-Xw-gtS" firstAttribute="leading" secondItem="Vv7-tc-cuL" secondAttribute="leading" id="msq-CR-Rcf"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="captionLabel" destination="g1s-3x-Y6w" id="uvO-ch-9U4"/>
+                                    <outlet property="photoView" destination="N9T-Xw-gtS" id="uYg-JN-xUq"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>

@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "DetailTableViewCell.h"
+#import "Photo.h"
 
 @interface DetailViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -19,12 +20,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Table View methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    DetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DetailCell" forIndexPath:indexPath];
+    [self configureCell:cell forIndexPath:indexPath];
+    return cell;
+}
+
+- (void)configureCell:(DetailTableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath {
+    Photo *photo = self.entry.photos[indexPath.row];
+    cell.photoView.image = [UIImage imageWithData:photo.photo];
+    cell.captionLabel.text = photo.location;
 }
 
 @end
