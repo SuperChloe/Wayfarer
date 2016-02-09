@@ -7,7 +7,7 @@
 //
 
 #import <Realm/Realm.h>
-#import "Entry.h"
+@class Entry;
 
 @interface Photo : RLMObject
 

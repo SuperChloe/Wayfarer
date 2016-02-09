@@ -11,11 +11,13 @@
 #import "CreateViewController.h"
 #import "CreateTableViewCell.h"
 #import "Photo.h"
+#import "Entry.h"
 
 @interface CreateViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) NSMutableDictionary *locationDictionary;
 @property (strong, nonatomic) PHFetchResult *fetchResult;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *photosArray;
 
 @end
 
@@ -28,12 +30,25 @@
     self.tableView.dataSource = self;
     
     self.locationDictionary = [[NSMutableDictionary alloc] init];
+    self.photosArray = [[NSMutableArray alloc] init];
     [self imageRequest];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+#pragma mark - Save Button/Realm saving
+
+- (IBAction)saveEntry:(id)sender {
+    Entry *newEntry = [[Entry alloc] init];
+    NSDate *todayStart = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
+    newEntry.date = todayStart;
+    for (Photo *photo in self.photosArray) {
+        photo.entry = newEntry;
+    }
+}
+
 
 #pragma mark - Table View methods
 
@@ -57,10 +72,8 @@
     Photo *photo = [[Photo alloc] init];
     photo.photo = images[arc4random()%images.count];
     photo.location = sortedKeys[indexPath.row];
-    NSLog(@"%@", photo.photo);
-    NSLog(@"%@", photo.location);
-    
-    cell.imageView.image = [UIImage imageWithData:photo.photo];
+    [self.photosArray addObject:photo];
+    cell.photoView.image = [UIImage imageWithData:photo.photo];
     cell.textView.text = photo.location;
 }
 

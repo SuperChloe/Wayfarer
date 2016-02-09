@@ -7,9 +7,11 @@
 //
 
 #import <Realm/Realm.h>
+#import "Photo.h"
 
 @interface Entry : RLMObject
 @property NSDate *date;
+@property RLMArray<Photo *><Photo> *photos;
 @end
 
 // This protocol enables typed collections. i.e.:
