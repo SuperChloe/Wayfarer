@@ -47,19 +47,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CreateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CreateCell" forIndexPath:indexPath];
-    NSArray *sortedKeys = [self.locationDictionary.allKeys sortedArrayUsingSelector:@selector(compare:)];
-    NSArray *images = [self.locationDictionary objectForKey:sortedKeys[indexPath.row]];
-    Photo *photo = [[Photo alloc] init];
-    photo.photo = images[0];
-    photo.location = sortedKeys[indexPath.row];
-    NSLog(@"%@", photo.photo);
-    NSLog(@"%@", photo.location);
-
-    cell.imageView.image = [UIImage imageWithData:photo.photo];
-    cell.textView.text = photo.location;
+    [self configureCell:cell forIndexPath:indexPath];
     return cell;
 }
 
+- (void)configureCell:(CreateTableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath {
+    NSArray *sortedKeys = [self.locationDictionary.allKeys sortedArrayUsingSelector:@selector(compare:)];
+    NSArray *images = [self.locationDictionary objectForKey:sortedKeys[indexPath.row]];
+    Photo *photo = [[Photo alloc] init];
+    photo.photo = images[arc4random()%images.count];
+    photo.location = sortedKeys[indexPath.row];
+    NSLog(@"%@", photo.photo);
+    NSLog(@"%@", photo.location);
+    
+    cell.imageView.image = [UIImage imageWithData:photo.photo];
+    cell.textView.text = photo.location;
+}
 
 #pragma mark - Retrieving image/location methods
 

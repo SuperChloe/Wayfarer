@@ -89,16 +89,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="502"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mh8-9t-Gae">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mh8-9t-Gae">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="450"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="450" id="XEh-3N-YoH"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Caption" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ab4-pH-13A">
-                                                    <rect key="frame" x="0.0" y="458" width="600" height="44"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Caption" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ab4-pH-13A">
+                                                    <rect key="frame" x="0.0" y="452" width="600" height="50"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Mh8-9t-Gae" firstAttribute="leading" secondItem="wmx-wc-dJt" secondAttribute="leading" id="NVq-3b-Jjk"/>
+                                                <constraint firstItem="Ab4-pH-13A" firstAttribute="top" secondItem="Mh8-9t-Gae" secondAttribute="bottom" constant="2" id="U1m-C8-mPV"/>
+                                                <constraint firstItem="Mh8-9t-Gae" firstAttribute="top" secondItem="wmx-wc-dJt" secondAttribute="top" id="WKv-Kl-yWd"/>
+                                                <constraint firstItem="Ab4-pH-13A" firstAttribute="leading" secondItem="wmx-wc-dJt" secondAttribute="leading" id="fNN-mt-VhH"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ab4-pH-13A" secondAttribute="trailing" id="ljF-7N-6mF"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ab4-pH-13A" secondAttribute="bottom" id="orN-5s-Op9"/>
+                                                <constraint firstAttribute="trailing" secondItem="Mh8-9t-Gae" secondAttribute="trailing" id="sdV-dP-2zo"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="photoView" destination="Mh8-9t-Gae" id="w26-YI-QIV"/>
