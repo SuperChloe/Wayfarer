@@ -46,7 +46,10 @@
     newEntry.date = todayStart;
     for (Photo *photo in self.photosArray) {
         photo.entry = newEntry;
+        [newEntry.photos addObject:photo];
     }
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
