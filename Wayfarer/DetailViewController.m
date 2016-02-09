@@ -7,8 +7,11 @@
 //
 
 #import "DetailViewController.h"
+#import "DetailTableViewCell.h"
 
-@interface DetailViewController ()
+@interface DetailViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 

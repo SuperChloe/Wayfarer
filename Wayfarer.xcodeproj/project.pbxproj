@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5D2CC82246438261BB36D5AF /* libPods-Wayfarer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 703A3C71B332AAF7A2E28C5B /* libPods-Wayfarer.a */; };
+		89CC38A31C6A9DC800415092 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CC38A21C6A9DC800415092 /* DetailTableViewCell.m */; };
 		89F791431C69138C004DC2FD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791421C69138C004DC2FD /* main.m */; };
 		89F791461C69138C004DC2FD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791451C69138C004DC2FD /* AppDelegate.m */; };
 		89F791491C69138C004DC2FD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791481C69138C004DC2FD /* ViewController.m */; };
@@ -26,6 +27,8 @@
 		49D346B45CD962DC4ECEFC99 /* Pods-Wayfarer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfarer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfarer/Pods-Wayfarer.debug.xcconfig"; sourceTree = "<group>"; };
 		569871FE152A3D1363490923 /* Pods-Wayfarer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfarer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfarer/Pods-Wayfarer.release.xcconfig"; sourceTree = "<group>"; };
 		703A3C71B332AAF7A2E28C5B /* libPods-Wayfarer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wayfarer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89CC38A11C6A9DC800415092 /* DetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewCell.h; sourceTree = "<group>"; };
+		89CC38A21C6A9DC800415092 /* DetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewCell.m; sourceTree = "<group>"; };
 		89F7913E1C69138C004DC2FD /* Wayfarer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wayfarer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F791421C69138C004DC2FD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		89F791441C69138C004DC2FD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 				89F791681C6A4E51004DC2FD /* CreateTableViewCell.m */,
 				89F791641C69187D004DC2FD /* DetailViewController.h */,
 				89F791651C69187D004DC2FD /* DetailViewController.m */,
+				89CC38A11C6A9DC800415092 /* DetailTableViewCell.h */,
+				89CC38A21C6A9DC800415092 /* DetailTableViewCell.m */,
 				89F7915B1C6917F4004DC2FD /* Entry.h */,
 				89F7915C1C6917F4004DC2FD /* Entry.m */,
 				89F7915E1C691801004DC2FD /* Photo.h */,
@@ -261,6 +266,7 @@
 				89F791661C69187D004DC2FD /* DetailViewController.m in Sources */,
 				89F791631C69186E004DC2FD /* CreateViewController.m in Sources */,
 				89F791691C6A4E51004DC2FD /* CreateTableViewCell.m in Sources */,
+				89CC38A31C6A9DC800415092 /* DetailTableViewCell.m in Sources */,
 				89F791491C69138C004DC2FD /* ViewController.m in Sources */,
 				89F791461C69138C004DC2FD /* AppDelegate.m in Sources */,
 				89F791431C69138C004DC2FD /* main.m in Sources */,
