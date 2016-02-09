@@ -12,6 +12,9 @@
 
 @interface CreateViewController ()
 @property (strong, nonatomic) IBOutlet UIView *view;
+@property (strong, nonatomic) NSMutableDictionary *locationDictionary;
+@property (strong, nonatomic) NSMutableArray *placemarksArray;
+@property (strong, nonatomic) PHFetchResult *fetchResult;
 
 @end
 
@@ -19,43 +22,50 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.locationDictionary = [[NSMutableDictionary alloc] init];
+    self.placemarksArray = [[NSMutableArray alloc] init];
 
     //TESTING RETRIEVING IMAGES
-    NSDate *todayStart = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
-    PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
-    fetchOptions.predicate = [NSPredicate predicateWithFormat:@"creationDate >= %@", todayStart];
-    PHFetchResult *fetchResult = [PHAsset fetchAssetsWithOptions:fetchOptions];
-    NSLog(@"%@", todayStart);
-    NSLog(@"%@", fetchResult);
-    
-    PHImageManager *imageManager = [[PHImageManager alloc] init];
-    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.resizeMode = PHImageRequestOptionsDeliveryModeFastFormat;
-    for (PHAsset *asset in fetchResult) {
-        [imageManager requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
-            UIImage *image = [[UIImage alloc] initWithData:imageData];
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 200, 200)];
-            imageView.image = image;
-            [self.view addSubview:imageView];
-        }];
-        if (asset.location) {
-            CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-            [geocoder reverseGeocodeLocation:asset.location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-                CLPlacemark *placemark = placemarks[0];
-                NSLog(@"%@", asset.location);
-                NSLog(@"%@", placemark.subLocality);
-            }];
-        } else {
-            
-            NSLog(@"No geotag");
-        }
-    }
-    
+    [self imageRequest];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+#pragma mark - Helper methods
+
+- (void)imageRequest {
+    NSDate *todayStart = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
+    PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
+    fetchOptions.predicate = [NSPredicate predicateWithFormat:@"creationDate >= %@", todayStart];
+    self.fetchResult = [PHAsset fetchAssetsWithOptions:fetchOptions];
+    PHImageManager *imageManager = [[PHImageManager alloc] init];
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.resizeMode = PHImageRequestOptionsDeliveryModeFastFormat;
+    for (PHAsset *asset in self.fetchResult) {
+        [imageManager requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+                [self geoCoder:asset withImage:imageData];
+        }];
+    }
+}
+
+- (void)geoCoder:(PHAsset *)asset withImage:(NSData *)imageData{
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    if (asset.location) {
+        CreateViewController * __weak weakSelf = self;
+        [geocoder reverseGeocodeLocation:asset.location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+            // Sorting into locationDictionary
+            if (![weakSelf.locationDictionary objectForKey:placemarks[0].subLocality]) {
+                [weakSelf.locationDictionary setObject:[[NSMutableArray alloc] init] forKey:placemarks[0].subLocality];
+            }
+            NSMutableArray *images = [weakSelf.locationDictionary valueForKey:placemarks[0].subLocality];
+            [images addObject:[UIImage imageWithData:imageData]];
+        }];
+    }
+}
+
 
 /*
 #pragma mark - Navigation
