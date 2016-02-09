@@ -41,14 +41,18 @@
 #pragma mark - Save Button/Realm saving
 
 - (IBAction)saveEntry:(id)sender {
-    Entry *newEntry = [[Entry alloc] init];
     NSDate *todayStart = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
+    Entry *newEntry = [[Entry alloc] init];
     newEntry.date = todayStart;
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
     for (Photo *photo in self.photosArray) {
         photo.entry = newEntry;
         [newEntry.photos addObject:photo];
+        [realm addObject:photo];
     }
-    
+    [realm addObject:newEntry];
+    [realm commitWriteTransaction];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

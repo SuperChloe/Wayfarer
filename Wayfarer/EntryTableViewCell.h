@@ -10,4 +10,6 @@
 
 @interface EntryTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *testingLabel;
+
 @end

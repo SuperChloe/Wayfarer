@@ -8,10 +8,12 @@
 
 #import "ViewController.h"
 #import "EntryTableViewCell.h"
+#import "Entry.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) RLMResults *sortedEntries;
 
 @end
 
@@ -21,6 +23,12 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    self.sortedEntries = [[Entry allObjects] sortedResultsUsingProperty:@"date" ascending:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,13 +50,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //ARBITRARY NUMBER FOR LAYOUT TESTING
-    return 10;
+    return self.sortedEntries.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     EntryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EntryCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor yellowColor];
+    Entry *entry = self.sortedEntries[indexPath.row];
+    cell.testingLabel.text = [NSDateFormatter localizedStringFromDate:entry.date dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle];
     return cell;
 }
 
