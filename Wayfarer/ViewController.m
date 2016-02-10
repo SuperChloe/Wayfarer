@@ -24,11 +24,13 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
-    self.sortedEntries = [[Entry allObjects] sortedResultsUsingProperty:@"date" ascending:YES];
+ //   self.sortedEntries = [[Entry allObjects] sortedResultsUsingProperty:@"date" ascending:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.sortedEntries = [[Entry allObjects] sortedResultsUsingProperty:@"date" ascending:YES];
     [self.tableView reloadData];
 }
 
@@ -66,8 +68,20 @@
                         value:@4
                         range:NSMakeRange(0, [kerning length])];
     cell.dateLabel.attributedText = kerning;
+    cell.entryPreview.clipsToBounds = YES;
     cell.entryPreview.image = [UIImage imageWithData:entry.photos[0].photo];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Entry *entry = self.sortedEntries[indexPath.row];
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [realm deleteObject:entry];
+        [realm commitWriteTransaction];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 @end
