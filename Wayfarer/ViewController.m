@@ -61,7 +61,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     EntryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EntryCell" forIndexPath:indexPath];
     Entry *entry = self.sortedEntries[indexPath.row];
-    cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:entry.date dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle];
+    NSMutableAttributedString *kerning = [[NSMutableAttributedString alloc] initWithString:([[NSDateFormatter localizedStringFromDate:entry.date dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle] uppercaseString])];
+    [kerning addAttribute:NSKernAttributeName
+                        value:@4
+                        range:NSMakeRange(0, [kerning length])];
+    cell.dateLabel.attributedText = kerning;
     cell.entryPreview.image = [UIImage imageWithData:entry.photos[0].photo];
     return cell;
 }
