@@ -11,7 +11,7 @@
 @implementation CreateTableViewCell
 
 - (void)awakeFromNib {
-    
+    self.swapButton.layer.borderColor = [UIColor blackColor].CGColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -23,5 +23,6 @@
 - (void)textViewDidChange:(UITextView *)textView {
     self.photo.location = textView.text;
 }
+
 
 @end

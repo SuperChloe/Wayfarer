@@ -13,12 +13,14 @@
 #import "Photo.h"
 #import "Entry.h"
 
-@interface CreateViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface CreateViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) NSMutableDictionary *locationDictionary;
 @property (strong, nonatomic) PHFetchResult *fetchResult;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *photosArray;
 @property (strong, nonatomic) NSDate *requestDate;
+@property (strong, nonatomic) UIImagePickerController *imagePicker;
+@property (assign, nonatomic) CGPoint hitPoint;
 
 @end
 
@@ -41,15 +43,16 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+    
     self.locationDictionary = [[NSMutableDictionary alloc] init];
     self.photosArray = [[NSMutableArray alloc] init];
     [self.locationDictionary removeAllObjects];
     [self.photosArray removeAllObjects];
     [self imageRequest];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -155,6 +158,30 @@
             }
         }];
     }
+}
+
+#pragma mark - Image Picker
+
+- (IBAction)swapButton:(id)sender {
+    self.hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+    self.imagePicker = [[UIImagePickerController alloc] init];
+    self.imagePicker.delegate = self;
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
+}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:self.hitPoint];
+    CreateTableViewCell *cell = (CreateTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    UIImage *pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    NSData *newImage = [NSData dataWithData:UIImagePNGRepresentation(pickedImage)];
+    cell.photo.photo = newImage;
+    [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
