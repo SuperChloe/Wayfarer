@@ -28,16 +28,16 @@
     [super viewDidLoad];
     
     //TODAYS DATE
-//    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
+    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
     
     
     //TESTING DATE
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setDay:23];
-    [comps setMonth:1];
-    [comps setYear:2016];
-    NSDate *test = [[NSCalendar currentCalendar] dateFromComponents:comps];
-    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:test];
+//    NSDateComponents *comps = [[NSDateComponents alloc] init];
+//    [comps setDay:5];
+//    [comps setMonth:1];
+//    [comps setYear:2015];
+//    NSDate *test = [[NSCalendar currentCalendar] dateFromComponents:comps];
+//    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:test];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -108,7 +108,7 @@
 - (void)imageRequest {
     //Fetch todays photos
     PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
-    fetchOptions.predicate = [NSPredicate predicateWithFormat:@"creationDate >= %@", self.requestDate];
+    fetchOptions.predicate = [NSPredicate predicateWithFormat:@"creationDate >= %@ AND creationDate < %@", self.requestDate, [self.requestDate dateByAddingTimeInterval:60*60*24]];
     self.fetchResult = [PHAsset fetchAssetsWithOptions:fetchOptions];
     
     //Get image data
@@ -137,19 +137,21 @@
                 NSLog(@"%@", error);
             } else {
                 // Sorting into locationDictionary
-                if (![weakSelf.locationDictionary objectForKey:placemarks[0].subLocality]) {
-                    [weakSelf.locationDictionary setObject:[[NSMutableArray alloc] init] forKey:placemarks[0].subLocality];
+                if (placemarks[0].subLocality) {
+                    if (![weakSelf.locationDictionary objectForKey:placemarks[0].subLocality]) {
+                        [weakSelf.locationDictionary setObject:[[NSMutableArray alloc] init] forKey:placemarks[0].subLocality];
+                    }
+                    NSMutableArray *images = [weakSelf.locationDictionary valueForKey:placemarks[0].subLocality];
+                    
+                    Photo *photo = [[Photo alloc] init];
+                    photo.location = placemarks[0].subLocality;
+                    photo.photo = imageData;
+                    if (images.count == 0) {
+                        [self.photosArray addObject:photo];
+                    }
+                    [images addObject:photo];
+                    [self.tableView reloadData];
                 }
-                NSMutableArray *images = [weakSelf.locationDictionary valueForKey:placemarks[0].subLocality];
-                
-                Photo *photo = [[Photo alloc] init];
-                photo.location = placemarks[0].subLocality;
-                photo.photo = imageData;
-                if (images.count == 0) {
-                    [self.photosArray addObject:photo];
-                }
-                [images addObject:photo];
-                [self.tableView reloadData];
             }
         }];
     }
