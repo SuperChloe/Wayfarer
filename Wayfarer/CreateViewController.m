@@ -120,12 +120,12 @@
         [imageManager requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
             //     [self geoCoder:asset withImage:imageData];
             NSArray *inputArray = @[asset, imageData];
-            [self performSelector:@selector(geoCoder:) withObject:inputArray afterDelay:1.5];
+            [self performSelector:@selector(locationSort:) withObject:inputArray afterDelay:1.5];
         }];
     }
 }
 
-- (void)geoCoder:(NSArray *)inputArray {
+- (void)locationSort:(NSArray *)inputArray {
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     PHAsset *asset = inputArray[0];
     NSData *imageData = inputArray[1];
