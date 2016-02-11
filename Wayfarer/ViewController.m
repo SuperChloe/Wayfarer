@@ -78,6 +78,9 @@
         Entry *entry = self.sortedEntries[indexPath.row];
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
+        for (Photo *photo in entry.photos) {
+            [realm deleteObject:photo];
+        }
         [realm deleteObject:entry];
         [realm commitWriteTransaction];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
