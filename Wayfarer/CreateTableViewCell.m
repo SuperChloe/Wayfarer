@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     self.swapButton.layer.borderColor = [UIColor blackColor].CGColor;
+    [self addDoneToolBarToKeyboard:self.textView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -22,6 +23,23 @@
 
 - (void)textViewDidChange:(UITextView *)textView {
     self.photo.location = textView.text;
+}
+
+-(void)addDoneToolBarToKeyboard:(UITextView *)textView
+{
+    UIToolbar* doneToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    doneToolbar.barStyle = UIBarStyleDefault;
+    UIBarButtonItem *done = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneButtonClickedDismissKeyboard)];
+    done.tintColor = [UIColor blackColor];
+    doneToolbar.items = [NSArray arrayWithObjects:
+                         [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], done, nil];
+    [doneToolbar sizeToFit];
+    textView.inputAccessoryView = doneToolbar;
+}
+
+-(void)doneButtonClickedDismissKeyboard
+{
+    [self.textView resignFirstResponder];
 }
 
 
