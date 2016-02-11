@@ -11,6 +11,8 @@
 		89CC38A31C6A9DC800415092 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CC38A21C6A9DC800415092 /* DetailTableViewCell.m */; };
 		89CC38AC1C6AE8CC00415092 /* Launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 89CC38AB1C6AE8CC00415092 /* Launch.png */; };
 		89CC38AE1C6C3D8000415092 /* wayfarer.png in Resources */ = {isa = PBXBuildFile; fileRef = 89CC38AD1C6C3D8000415092 /* wayfarer.png */; };
+		89CC38B21C6CDC9000415092 /* ParallaxHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CC38B11C6CDC9000415092 /* ParallaxHeaderView.m */; };
+		89CC38B51C6CDE5600415092 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CC38B41C6CDE5600415092 /* UIImage+ImageEffects.m */; };
 		89F791431C69138C004DC2FD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791421C69138C004DC2FD /* main.m */; };
 		89F791461C69138C004DC2FD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791451C69138C004DC2FD /* AppDelegate.m */; };
 		89F791491C69138C004DC2FD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791481C69138C004DC2FD /* ViewController.m */; };
@@ -33,6 +35,10 @@
 		89CC38A21C6A9DC800415092 /* DetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewCell.m; sourceTree = "<group>"; };
 		89CC38AB1C6AE8CC00415092 /* Launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launch.png; sourceTree = "<group>"; };
 		89CC38AD1C6C3D8000415092 /* wayfarer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wayfarer.png; sourceTree = "<group>"; };
+		89CC38B01C6CDC9000415092 /* ParallaxHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxHeaderView.h; sourceTree = "<group>"; };
+		89CC38B11C6CDC9000415092 /* ParallaxHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallaxHeaderView.m; sourceTree = "<group>"; };
+		89CC38B31C6CDE5600415092 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		89CC38B41C6CDE5600415092 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		89F7913E1C69138C004DC2FD /* Wayfarer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wayfarer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F791421C69138C004DC2FD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		89F791441C69138C004DC2FD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -77,6 +83,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		89CC38AF1C6CDC6600415092 /* parallax */ = {
+			isa = PBXGroup;
+			children = (
+				89CC38B31C6CDE5600415092 /* UIImage+ImageEffects.h */,
+				89CC38B41C6CDE5600415092 /* UIImage+ImageEffects.m */,
+				89CC38B01C6CDC9000415092 /* ParallaxHeaderView.h */,
+				89CC38B11C6CDC9000415092 /* ParallaxHeaderView.m */,
+			);
+			name = parallax;
+			sourceTree = "<group>";
+		};
 		89F791351C69138B004DC2FD = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +115,7 @@
 		89F791401C69138C004DC2FD /* Wayfarer */ = {
 			isa = PBXGroup;
 			children = (
+				89CC38AF1C6CDC6600415092 /* parallax */,
 				89F791441C69138C004DC2FD /* AppDelegate.h */,
 				89F791451C69138C004DC2FD /* AppDelegate.m */,
 				89F791471C69138C004DC2FD /* ViewController.h */,
@@ -269,12 +287,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				89F791601C691801004DC2FD /* Photo.m in Sources */,
+				89CC38B21C6CDC9000415092 /* ParallaxHeaderView.m in Sources */,
 				89F7915A1C691543004DC2FD /* EntryTableViewCell.m in Sources */,
 				89F7915D1C6917F4004DC2FD /* Entry.m in Sources */,
 				89F791661C69187D004DC2FD /* DetailViewController.m in Sources */,
 				89F791631C69186E004DC2FD /* CreateViewController.m in Sources */,
 				89F791691C6A4E51004DC2FD /* CreateTableViewCell.m in Sources */,
 				89CC38A31C6A9DC800415092 /* DetailTableViewCell.m in Sources */,
+				89CC38B51C6CDE5600415092 /* UIImage+ImageEffects.m in Sources */,
 				89F791491C69138C004DC2FD /* ViewController.m in Sources */,
 				89F791461C69138C004DC2FD /* AppDelegate.m in Sources */,
 				89F791431C69138C004DC2FD /* main.m in Sources */,

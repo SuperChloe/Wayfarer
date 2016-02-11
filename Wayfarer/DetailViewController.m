@@ -9,6 +9,7 @@
 #import "DetailViewController.h"
 #import "DetailTableViewCell.h"
 #import "Photo.h"
+#import "ParallaxHeaderView.h"
 
 @interface DetailViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -22,6 +23,20 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    
+    //Parallax header
+    Photo *headerPhoto = self.entry.photos[arc4random()%self.entry.photos.count];
+    ParallaxHeaderView *headerView = [ParallaxHeaderView parallaxHeaderViewWithImage:[UIImage imageWithData:headerPhoto.photo] forSize:CGSizeMake(self.tableView.frame.size.width, 150)];
+    NSMutableAttributedString *kerning = [[NSMutableAttributedString alloc] initWithString:([[NSDateFormatter localizedStringFromDate:self.entry.date dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle] uppercaseString])];
+    [kerning addAttribute:NSKernAttributeName
+                    value:@4
+                    range:NSMakeRange(0, [kerning length])];
+    headerView.headerTitleLabel.frame = CGRectMake(0, 0, 325, 35);
+    headerView.headerTitleLabel.center = headerView.center;
+    headerView.headerTitleLabel.attributedText = kerning;
+    headerView.headerTitleLabel.backgroundColor = [UIColor whiteColor];
+    [self.tableView setTableHeaderView:headerView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,6 +44,13 @@
 }
 
 #pragma mark - Table View methods
+
+//For parallax header
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView == self.tableView) {
+        [(ParallaxHeaderView *)self.tableView.tableHeaderView layoutHeaderViewForScrollViewOffset:scrollView.contentOffset];
+    }
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
