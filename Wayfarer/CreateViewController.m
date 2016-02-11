@@ -95,20 +95,13 @@
     cell.textView.editable = YES;
     NSArray *sortedKeys = [self.locationDictionary.allKeys sortedArrayUsingSelector:@selector(compare:)];
     NSArray *images = [self.locationDictionary objectForKey:sortedKeys[indexPath.row]];
-    cell.photo = [[Photo alloc] init];
-    cell.photo.photo = images[0];
-    cell.photo.location = sortedKeys[indexPath.row];
+    Photo *photo = images[0];
 
-    cell.photoView.image = [UIImage imageWithData:cell.photo.photo];
-    cell.textView.text = cell.photo.location;
-    [self.photosArray addObject:cell.photo];
+    cell.photoView.image = [UIImage imageWithData:photo.photo];
+    cell.textView.text = photo.location;
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(CreateTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    cell.photo.location = cell.textView.text;
-    [realm commitWriteTransaction];
 }
 
 #pragma mark - Text View
@@ -133,7 +126,6 @@
            //     [self geoCoder:asset withImage:imageData];
                 NSArray *inputArray = @[asset, imageData];
             [self performSelector:@selector(geoCoder:) withObject:inputArray afterDelay:1.5];
-            
         }];
     }
 }
@@ -154,12 +146,15 @@
                     [weakSelf.locationDictionary setObject:[[NSMutableArray alloc] init] forKey:placemarks[0].subLocality];
                 }
                 NSMutableArray *images = [weakSelf.locationDictionary valueForKey:placemarks[0].subLocality];
-                [images addObject:imageData];
+                Photo *photo = [[Photo alloc] init];
+                photo.location = placemarks[0].subLocality;
+                photo.photo = imageData;
+                [images addObject:photo];
+                [self.photosArray addObject:images[0]];
                 [self.tableView reloadData];
             }
         }];
     }
 }
-
 
 @end
