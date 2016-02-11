@@ -123,8 +123,8 @@
     options.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
     for (PHAsset *asset in self.fetchResult) {
         [imageManager requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
-           //     [self geoCoder:asset withImage:imageData];
-                NSArray *inputArray = @[asset, imageData];
+            //     [self geoCoder:asset withImage:imageData];
+            NSArray *inputArray = @[asset, imageData];
             [self performSelector:@selector(geoCoder:) withObject:inputArray afterDelay:1.5];
         }];
     }
@@ -141,16 +141,19 @@
             if (error) {
                 NSLog(@"%@", error);
             } else {
-            // Sorting into locationDictionary
+                // Sorting into locationDictionary
                 if (![weakSelf.locationDictionary objectForKey:placemarks[0].subLocality]) {
                     [weakSelf.locationDictionary setObject:[[NSMutableArray alloc] init] forKey:placemarks[0].subLocality];
                 }
                 NSMutableArray *images = [weakSelf.locationDictionary valueForKey:placemarks[0].subLocality];
+                
                 Photo *photo = [[Photo alloc] init];
                 photo.location = placemarks[0].subLocality;
                 photo.photo = imageData;
+                if (images.count == 0) {
+                    [self.photosArray addObject:photo];
+                }
                 [images addObject:photo];
-                [self.photosArray addObject:images[0]];
                 [self.tableView reloadData];
             }
         }];
