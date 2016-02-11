@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "Photo.h"
 
-@interface CreateTableViewCell : UITableViewCell
+@interface CreateTableViewCell : UITableViewCell <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) Photo *photo;
 
 @end

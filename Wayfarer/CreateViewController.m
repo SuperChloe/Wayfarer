@@ -13,7 +13,7 @@
 #import "Photo.h"
 #import "Entry.h"
 
-@interface CreateViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
+@interface CreateViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) NSMutableDictionary *locationDictionary;
 @property (strong, nonatomic) PHFetchResult *fetchResult;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -91,23 +91,16 @@
 }
 
 - (void)configureCell:(CreateTableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath {
-    cell.textView.delegate = self;
+    cell.textView.delegate = cell;
     cell.textView.editable = YES;
-    NSArray *sortedKeys = [self.locationDictionary.allKeys sortedArrayUsingSelector:@selector(compare:)];
-    NSArray *images = [self.locationDictionary objectForKey:sortedKeys[indexPath.row]];
-    Photo *photo = images[0];
+//    NSArray *sortedKeys = [self.locationDictionary.allKeys sortedArrayUsingSelector:@selector(compare:)];
+//    NSArray *images = [self.locationDictionary objectForKey:sortedKeys[indexPath.row]];
+//    Photo *photo = images[0];
+    
+    cell.photo = self.photosArray[indexPath.row];
 
-    cell.photoView.image = [UIImage imageWithData:photo.photo];
-    cell.textView.text = photo.location;
-}
-
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(CreateTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-}
-
-#pragma mark - Text View
-
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
-    return YES;
+    cell.photoView.image = [UIImage imageWithData:cell.photo.photo];
+    cell.textView.text = cell.photo.location;
 }
 
 #pragma mark - Retrieving image/location methods
@@ -117,10 +110,12 @@
     PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
     fetchOptions.predicate = [NSPredicate predicateWithFormat:@"creationDate >= %@", self.requestDate];
     self.fetchResult = [PHAsset fetchAssetsWithOptions:fetchOptions];
+    
     //Get image data
     PHImageManager *imageManager = [[PHImageManager alloc] init];
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     options.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
+    
     for (PHAsset *asset in self.fetchResult) {
         [imageManager requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
             //     [self geoCoder:asset withImage:imageData];

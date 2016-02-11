@@ -18,4 +18,10 @@
     [super setSelected:selected animated:animated];
 }
 
+#pragma mark - Text View
+
+- (void)textViewDidChange:(UITextView *)textView {
+    self.photo.location = textView.text;
+}
+
 @end
