@@ -1,6 +1,8 @@
 # Wayfarer
 Travel photo journal that generates your entries automatically (LHL Midterm Project)
 
+![Launch Screen](wayfarer1.png) ![Entries](wayfarer2.gif) ![Create Entry](wayfarer3.gif)
+
 The app lets you generate photo diaries entries with minimal effort, using vacation photos that you would be taking anyways. It generates photo entries automatically for that day using the photos you took and their geotags.
 
 - Automatically generates photo diary entries using the Photos Framework (fetching and sorting PHAssets, retrieving images and metadata) and CLLocation/CLGeocoder
