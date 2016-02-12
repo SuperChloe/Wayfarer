@@ -8,6 +8,7 @@
 
 #import <Photos/Photos.h>
 #import <MapKit/MapKit.h>
+#import "UIImage+fixOrientation.h"
 #import "CreateViewController.h"
 #import "CreateTableViewCell.h"
 #import "Photo.h"
@@ -29,11 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    //Notifcations for keyboard appearing/hiding
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-//    
+
     //TODAYS DATE
 //    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
     
@@ -63,10 +60,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
-//- (void)dealloc {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//}
 
 #pragma mark - Save Button/Realm saving
 
@@ -188,44 +181,12 @@
     NSIndexPath *indexPath = [self.createTableView indexPathForRowAtPoint:self.hitPoint];
     CreateTableViewCell *cell = (CreateTableViewCell *)[self.createTableView cellForRowAtIndexPath:indexPath];
     UIImage *pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    NSData *newImage = [NSData dataWithData:UIImagePNGRepresentation(pickedImage)];
+    [pickedImage fixOrientation];
+//    UIImage *fixedImage = [UIImage imageWithCGImage:pickedImage.CGImage scale:1.0 orientation:UIImageOrientationUp];
+    NSLog(@"%ld", (long)pickedImage.imageOrientation);
+    NSData *newImage = [NSData dataWithData:UIImageJPEGRepresentation(pickedImage, 1.0)];
     cell.photo.photo = newImage;
     [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
 }
-
-#pragma mark - Keyboard showing/hiding
-
-//- (void)keyboardWillShow:(NSNotification *)notification {
-//    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-//    
-//    UIEdgeInsets contentInsets;
-//    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-//        contentInsets = UIEdgeInsetsMake(0.0, 0.0, (keyboardSize.height), 0.0);
-//    } else {
-//        contentInsets = UIEdgeInsetsMake(0.0, 0.0, (keyboardSize.width), 0.0);
-//    }
-//    
-//    self.createTableView.contentInset = contentInsets;
-//    self.createTableView.scrollIndicatorInsets = contentInsets;
-//    self.hitPoint = [ convertPoint:CGPointZero toView:self.createTableView];
-//    NSIndexPath *indexPath = [self.createTableView indexPathForRowAtPoint:self.hitPoint];
-//    [self.createTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-//}
-
-
-//- (void)keyboardWillHide:(NSNotification *)notification {
-//    self.createTableView.contentInset = UIEdgeInsetsZero;
-//    self.createTableView.scrollIndicatorInsets = UIEdgeInsetsZero;
-//}
-//
-//#pragma mark - Text View
-//
-//- (void)textFieldDidBeginEditing:(UITextView *)textView {
-//    self.activeView = textView;
-//}
-//
-//- (void)textFieldDidEndEditing:(UITextView *)textView {
-//    self.activeView = nil;
-//}
 
 @end

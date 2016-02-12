@@ -14,6 +14,7 @@
 		89CC38B81C6D583F00415092 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CC38B71C6D583F00415092 /* TPKeyboardAvoidingTableView.m */; };
 		89CC38BC1C6D58C200415092 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CC38BB1C6D58C200415092 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		89CC38BF1C6D58E400415092 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CC38BE1C6D58E400415092 /* TPKeyboardAvoidingScrollView.m */; };
+		89CC38C21C6D630B00415092 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CC38C11C6D630B00415092 /* UIImage+fixOrientation.m */; };
 		89F791431C69138C004DC2FD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791421C69138C004DC2FD /* main.m */; };
 		89F791461C69138C004DC2FD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791451C69138C004DC2FD /* AppDelegate.m */; };
 		89F791491C69138C004DC2FD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791481C69138C004DC2FD /* ViewController.m */; };
@@ -42,6 +43,8 @@
 		89CC38BB1C6D58C200415092 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 		89CC38BD1C6D58E400415092 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
 		89CC38BE1C6D58E400415092 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		89CC38C01C6D630B00415092 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
+		89CC38C11C6D630B00415092 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
 		89F7913E1C69138C004DC2FD /* Wayfarer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wayfarer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F791421C69138C004DC2FD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		89F791441C69138C004DC2FD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				89F7915C1C6917F4004DC2FD /* Entry.m */,
 				89F7915E1C691801004DC2FD /* Photo.h */,
 				89F7915F1C691801004DC2FD /* Photo.m */,
+				89CC38C01C6D630B00415092 /* UIImage+fixOrientation.h */,
+				89CC38C11C6D630B00415092 /* UIImage+fixOrientation.m */,
 				89F7914A1C69138C004DC2FD /* Main.storyboard */,
 				89CC38AB1C6AE8CC00415092 /* Launch.png */,
 				89CC38AD1C6C3D8000415092 /* wayfarer.png */,
@@ -299,6 +304,7 @@
 				89F791661C69187D004DC2FD /* DetailViewController.m in Sources */,
 				89F791631C69186E004DC2FD /* CreateViewController.m in Sources */,
 				89F791691C6A4E51004DC2FD /* CreateTableViewCell.m in Sources */,
+				89CC38C21C6D630B00415092 /* UIImage+fixOrientation.m in Sources */,
 				89CC38A31C6A9DC800415092 /* DetailTableViewCell.m in Sources */,
 				89F791491C69138C004DC2FD /* ViewController.m in Sources */,
 				89CC38B81C6D583F00415092 /* TPKeyboardAvoidingTableView.m in Sources */,
