@@ -182,8 +182,6 @@
     CreateTableViewCell *cell = (CreateTableViewCell *)[self.createTableView cellForRowAtIndexPath:indexPath];
     UIImage *pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     [pickedImage fixOrientation];
-//    UIImage *fixedImage = [UIImage imageWithCGImage:pickedImage.CGImage scale:1.0 orientation:UIImageOrientationUp];
-    NSLog(@"%ld", (long)pickedImage.imageOrientation);
     NSData *newImage = [NSData dataWithData:UIImageJPEGRepresentation(pickedImage, 1.0)];
     cell.photo.photo = newImage;
     [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
