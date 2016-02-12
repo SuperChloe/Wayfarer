@@ -30,7 +30,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.sortedEntries = [[Entry allObjects] sortedResultsUsingProperty:@"date" ascending:YES];
+    self.sortedEntries = [[Entry allObjects] sortedResultsUsingProperty:@"date" ascending:NO];
     [self.tableView reloadData];
 }
 

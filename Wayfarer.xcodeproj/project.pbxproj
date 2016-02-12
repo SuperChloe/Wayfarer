@@ -15,6 +15,8 @@
 		89CC38BC1C6D58C200415092 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CC38BB1C6D58C200415092 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		89CC38BF1C6D58E400415092 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CC38BE1C6D58E400415092 /* TPKeyboardAvoidingScrollView.m */; };
 		89CC38C21C6D630B00415092 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CC38C11C6D630B00415092 /* UIImage+fixOrientation.m */; };
+		89F51AB41C6D734800531F96 /* ParallaxHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F51AB21C6D734800531F96 /* ParallaxHeaderView.m */; };
+		89F51AB51C6D734800531F96 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F51AB31C6D734800531F96 /* UIImage+ImageEffects.m */; };
 		89F791431C69138C004DC2FD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791421C69138C004DC2FD /* main.m */; };
 		89F791461C69138C004DC2FD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791451C69138C004DC2FD /* AppDelegate.m */; };
 		89F791491C69138C004DC2FD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F791481C69138C004DC2FD /* ViewController.m */; };
@@ -45,6 +47,10 @@
 		89CC38BE1C6D58E400415092 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
 		89CC38C01C6D630B00415092 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
 		89CC38C11C6D630B00415092 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
+		89F51AB01C6D733600531F96 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "Wayfarer/UIImage+ImageEffects.h"; sourceTree = SOURCE_ROOT; };
+		89F51AB11C6D734800531F96 /* ParallaxHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParallaxHeaderView.h; path = Wayfarer/ParallaxHeaderView.h; sourceTree = SOURCE_ROOT; };
+		89F51AB21C6D734800531F96 /* ParallaxHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParallaxHeaderView.m; path = Wayfarer/ParallaxHeaderView.m; sourceTree = SOURCE_ROOT; };
+		89F51AB31C6D734800531F96 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "Wayfarer/UIImage+ImageEffects.m"; sourceTree = SOURCE_ROOT; };
 		89F7913E1C69138C004DC2FD /* Wayfarer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wayfarer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F791421C69138C004DC2FD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		89F791441C69138C004DC2FD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -102,6 +108,18 @@
 			name = TPKeyboardAvoiding;
 			sourceTree = "<group>";
 		};
+		89F51AB61C6D735C00531F96 /* parallax */ = {
+			isa = PBXGroup;
+			children = (
+				89F51AB11C6D734800531F96 /* ParallaxHeaderView.h */,
+				89F51AB21C6D734800531F96 /* ParallaxHeaderView.m */,
+				89F51AB31C6D734800531F96 /* UIImage+ImageEffects.m */,
+				89F51AB01C6D733600531F96 /* UIImage+ImageEffects.h */,
+			);
+			name = parallax;
+			path = ../../../../../..;
+			sourceTree = "<group>";
+		};
 		89F791351C69138B004DC2FD = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +141,7 @@
 		89F791401C69138C004DC2FD /* Wayfarer */ = {
 			isa = PBXGroup;
 			children = (
+				89F51AB61C6D735C00531F96 /* parallax */,
 				89CC38B91C6D584300415092 /* TPKeyboardAvoiding */,
 				89F791441C69138C004DC2FD /* AppDelegate.h */,
 				89F791451C69138C004DC2FD /* AppDelegate.m */,
@@ -308,6 +327,8 @@
 				89CC38A31C6A9DC800415092 /* DetailTableViewCell.m in Sources */,
 				89F791491C69138C004DC2FD /* ViewController.m in Sources */,
 				89CC38B81C6D583F00415092 /* TPKeyboardAvoidingTableView.m in Sources */,
+				89F51AB51C6D734800531F96 /* UIImage+ImageEffects.m in Sources */,
+				89F51AB41C6D734800531F96 /* ParallaxHeaderView.m in Sources */,
 				89F791461C69138C004DC2FD /* AppDelegate.m in Sources */,
 				89F791431C69138C004DC2FD /* main.m in Sources */,
 			);
