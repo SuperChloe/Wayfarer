@@ -14,7 +14,6 @@
 
 @interface ParallaxHeaderView ()
 @property (weak, nonatomic) IBOutlet UIScrollView *imageScrollView;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIView *subView;
 @property (nonatomic) IBOutlet UIImageView *bluredImageView;
 @end
@@ -74,7 +73,7 @@ static CGFloat kLabelPaddingDist = 8.0f;
         rect.size.height += delta;
         self.imageScrollView.frame = rect;
         self.clipsToBounds = NO;
-        self.headerTitleLabel.alpha = 1 - (delta) * 1 / kMaxTitleAlphaOffset;
+        //self.headerTitleLabel.alpha = 1 - (delta) * 1 / kMaxTitleAlphaOffset;
     }
 }
 

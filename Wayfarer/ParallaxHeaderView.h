@@ -12,6 +12,7 @@
 @interface ParallaxHeaderView : UIView
 @property (nonatomic) IBOutlet UILabel *headerTitleLabel;
 @property (nonatomic) UIImage *headerImage;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 + (id)parallaxHeaderViewWithImage:(UIImage *)image forSize:(CGSize)headerSize;
 + (id)parallaxHeaderViewWithSubView:(UIView *)subView;
