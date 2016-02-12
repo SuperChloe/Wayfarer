@@ -13,6 +13,8 @@
 - (void)awakeFromNib {
     self.swapButton.layer.borderColor = [UIColor blackColor].CGColor;
     [self addDoneToolBarToKeyboard:self.textView];
+    self.textView.delegate = self;
+    self.textView.editable = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -41,6 +43,7 @@
 {
     [self.textView resignFirstResponder];
 }
+
 
 
 @end

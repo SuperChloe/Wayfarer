@@ -16,11 +16,12 @@
 @interface CreateViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) NSMutableDictionary *locationDictionary;
 @property (strong, nonatomic) PHFetchResult *fetchResult;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *createTableView;
 @property (strong, nonatomic) NSMutableArray *photosArray;
 @property (strong, nonatomic) NSDate *requestDate;
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 @property (assign, nonatomic) CGPoint hitPoint;
+@property (strong, nonatomic) UITextView *activeView;
 
 @end
 
@@ -30,23 +31,23 @@
     [super viewDidLoad];
     
     //Notifcations for keyboard appearing/hiding
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+//    
     //TODAYS DATE
-    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
+//    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
     
     
     //TESTING DATE
-//    NSDateComponents *comps = [[NSDateComponents alloc] init];
-//    [comps setDay:5];
-//    [comps setMonth:1];
-//    [comps setYear:2015];
-//    NSDate *test = [[NSCalendar currentCalendar] dateFromComponents:comps];
-//    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:test];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setDay:20];
+    [comps setMonth:10];
+    [comps setYear:2015];
+    NSDate *test = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:test];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    self.createTableView.delegate = self;
+    self.createTableView.dataSource = self;
     
     self.locationDictionary = [[NSMutableDictionary alloc] init];
     self.photosArray = [[NSMutableArray alloc] init];
@@ -56,16 +57,16 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.tableView reloadData];
+    [self.createTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+//- (void)dealloc {
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//}
 
 #pragma mark - Save Button/Realm saving
 
@@ -102,8 +103,8 @@
 }
 
 - (void)configureCell:(CreateTableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath {
-    cell.textView.delegate = cell;
-    cell.textView.editable = YES;
+//    cell.textView.delegate = cell;
+//    cell.textView.editable = YES;
 //    NSArray *sortedKeys = [self.locationDictionary.allKeys sortedArrayUsingSelector:@selector(compare:)];
 //    NSArray *images = [self.locationDictionary objectForKey:sortedKeys[indexPath.row]];
 //    Photo *photo = images[0];
@@ -119,7 +120,7 @@
 - (void)imageRequest {
     //Fetch todays photos
     PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
-    fetchOptions.predicate = [NSPredicate predicateWithFormat:@"creationDate >= %@ AND creationDate < %@", self.requestDate, [self.requestDate dateByAddingTimeInterval:60*60*24]];
+    fetchOptions.predicate = [NSPredicate predicateWithFormat:@"creationDate >= %@ AND creationDate < %@", self.requestDate, [self.requestDate dateByAddingTimeInterval:60*60*48]];
     self.fetchResult = [PHAsset fetchAssetsWithOptions:fetchOptions];
     
     //Get image data
@@ -161,7 +162,7 @@
                         [self.photosArray addObject:photo];
                     }
                     [images addObject:photo];
-                    [self.tableView reloadData];
+                    [self.createTableView reloadData];
                 }
             }
         }];
@@ -171,7 +172,7 @@
 #pragma mark - Image Picker
 
 - (IBAction)swapButton:(id)sender {
-    self.hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+    self.hitPoint = [sender convertPoint:CGPointZero toView:self.createTableView];
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.delegate = self;
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -184,8 +185,8 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:self.hitPoint];
-    CreateTableViewCell *cell = (CreateTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    NSIndexPath *indexPath = [self.createTableView indexPathForRowAtPoint:self.hitPoint];
+    CreateTableViewCell *cell = (CreateTableViewCell *)[self.createTableView cellForRowAtIndexPath:indexPath];
     UIImage *pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     NSData *newImage = [NSData dataWithData:UIImagePNGRepresentation(pickedImage)];
     cell.photo.photo = newImage;
@@ -194,27 +195,37 @@
 
 #pragma mark - Keyboard showing/hiding
 
-- (void)keyboardWillShow:(NSNotification *)notification {
-    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    UIEdgeInsets contentInsets;
-    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-        contentInsets = UIEdgeInsetsMake(0.0, 0.0, (keyboardSize.height), 0.0);
-    } else {
-        contentInsets = UIEdgeInsetsMake(0.0, 0.0, (keyboardSize.width), 0.0);
-    }
-    
-    self.tableView.contentInset = contentInsets;
-    self.tableView.scrollIndicatorInsets = contentInsets;
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:self.hitPoint];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-}
+//- (void)keyboardWillShow:(NSNotification *)notification {
+//    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+//    
+//    UIEdgeInsets contentInsets;
+//    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+//        contentInsets = UIEdgeInsetsMake(0.0, 0.0, (keyboardSize.height), 0.0);
+//    } else {
+//        contentInsets = UIEdgeInsetsMake(0.0, 0.0, (keyboardSize.width), 0.0);
+//    }
+//    
+//    self.createTableView.contentInset = contentInsets;
+//    self.createTableView.scrollIndicatorInsets = contentInsets;
+//    self.hitPoint = [ convertPoint:CGPointZero toView:self.createTableView];
+//    NSIndexPath *indexPath = [self.createTableView indexPathForRowAtPoint:self.hitPoint];
+//    [self.createTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+//}
 
 
-- (void)keyboardWillHide:(NSNotification *)notification
-{
-    self.tableView.contentInset = UIEdgeInsetsZero;
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero;
-}
+//- (void)keyboardWillHide:(NSNotification *)notification {
+//    self.createTableView.contentInset = UIEdgeInsetsZero;
+//    self.createTableView.scrollIndicatorInsets = UIEdgeInsetsZero;
+//}
+//
+//#pragma mark - Text View
+//
+//- (void)textFieldDidBeginEditing:(UITextView *)textView {
+//    self.activeView = textView;
+//}
+//
+//- (void)textFieldDidEndEditing:(UITextView *)textView {
+//    self.activeView = nil;
+//}
 
 @end
