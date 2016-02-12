@@ -98,7 +98,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="502" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HLI-qf-Ix1">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="502" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HLI-qf-Ix1" customClass="TPKeyboardAvoidingTableView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -121,11 +121,28 @@
                                                         <constraint firstAttribute="height" constant="450" id="TJl-QB-fg3"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3T-LZ-keb">
+                                                    <rect key="frame" x="252" y="401" width="96" height="30"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="Q55-nB-b7R"/>
+                                                        <constraint firstAttribute="width" constant="96" id="qnj-RH-Q19"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="18"/>
+                                                    <state key="normal" title="Swap Photo">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="swapButton:" destination="Vfp-7h-te8" eventType="touchUpInside" id="ZcB-hJ-qom"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="z8I-tq-yCR" firstAttribute="leading" secondItem="M0p-Qd-04f" secondAttribute="leading" id="B2Y-hA-CLL"/>
                                                 <constraint firstItem="z8I-tq-yCR" firstAttribute="top" secondItem="ETa-eY-Of0" secondAttribute="bottom" constant="1" id="Kxn-DX-x4o"/>
+                                                <constraint firstItem="z8I-tq-yCR" firstAttribute="top" secondItem="z3T-LZ-keb" secondAttribute="bottom" constant="20" id="Oe1-e2-BD5"/>
                                                 <constraint firstItem="ETa-eY-Of0" firstAttribute="top" secondItem="M0p-Qd-04f" secondAttribute="top" id="Oju-9h-obi"/>
+                                                <constraint firstItem="z3T-LZ-keb" firstAttribute="centerX" secondItem="M0p-Qd-04f" secondAttribute="centerX" id="XgJ-5O-RlD"/>
                                                 <constraint firstAttribute="trailing" secondItem="z8I-tq-yCR" secondAttribute="trailing" id="oCn-Qd-jhl"/>
                                                 <constraint firstAttribute="trailing" secondItem="ETa-eY-Of0" secondAttribute="trailing" id="qSg-e3-JYv"/>
                                                 <constraint firstItem="ETa-eY-Of0" firstAttribute="leading" secondItem="M0p-Qd-04f" secondAttribute="leading" id="sBv-l1-SqW"/>
@@ -134,6 +151,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="photoView" destination="ETa-eY-Of0" id="A6i-Bs-tjy"/>
+                                            <outlet property="swapButton" destination="z3T-LZ-keb" id="htV-5w-36h"/>
                                             <outlet property="textView" destination="z8I-tq-yCR" id="ImD-wn-79c"/>
                                         </connections>
                                     </tableViewCell>
@@ -163,7 +181,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="HLI-qf-Ix1" id="gd2-M2-8Nn"/>
+                        <outlet property="createTableView" destination="HLI-qf-Ix1" id="q8H-EA-Bey"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iXM-hn-ro3" userLabel="First Responder" sceneMemberID="firstResponder"/>

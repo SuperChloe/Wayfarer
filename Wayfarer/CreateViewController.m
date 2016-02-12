@@ -8,17 +8,21 @@
 
 #import <Photos/Photos.h>
 #import <MapKit/MapKit.h>
+#import "UIImage+fixOrientation.h"
 #import "CreateViewController.h"
 #import "CreateTableViewCell.h"
 #import "Photo.h"
 #import "Entry.h"
 
-@interface CreateViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface CreateViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) NSMutableDictionary *locationDictionary;
 @property (strong, nonatomic) PHFetchResult *fetchResult;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *createTableView;
 @property (strong, nonatomic) NSMutableArray *photosArray;
 @property (strong, nonatomic) NSDate *requestDate;
+@property (strong, nonatomic) UIImagePickerController *imagePicker;
+@property (assign, nonatomic) CGPoint hitPoint;
+@property (strong, nonatomic) UITextView *activeView;
 
 @end
 
@@ -26,30 +30,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     //TODAYS DATE
-    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
+//    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
     
     
     //TESTING DATE
-//    NSDateComponents *comps = [[NSDateComponents alloc] init];
-//    [comps setDay:5];
-//    [comps setMonth:1];
-//    [comps setYear:2015];
-//    NSDate *test = [[NSCalendar currentCalendar] dateFromComponents:comps];
-//    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:test];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setDay:20];
+    [comps setMonth:10];
+    [comps setYear:2015];
+    NSDate *test = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:test];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+    self.createTableView.delegate = self;
+    self.createTableView.dataSource = self;
+    
     self.locationDictionary = [[NSMutableDictionary alloc] init];
     self.photosArray = [[NSMutableArray alloc] init];
     [self.locationDictionary removeAllObjects];
     [self.photosArray removeAllObjects];
     [self imageRequest];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.createTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,8 +96,8 @@
 }
 
 - (void)configureCell:(CreateTableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath {
-    cell.textView.delegate = cell;
-    cell.textView.editable = YES;
+//    cell.textView.delegate = cell;
+//    cell.textView.editable = YES;
 //    NSArray *sortedKeys = [self.locationDictionary.allKeys sortedArrayUsingSelector:@selector(compare:)];
 //    NSArray *images = [self.locationDictionary objectForKey:sortedKeys[indexPath.row]];
 //    Photo *photo = images[0];
@@ -108,7 +113,7 @@
 - (void)imageRequest {
     //Fetch todays photos
     PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
-    fetchOptions.predicate = [NSPredicate predicateWithFormat:@"creationDate >= %@ AND creationDate < %@", self.requestDate, [self.requestDate dateByAddingTimeInterval:60*60*24]];
+    fetchOptions.predicate = [NSPredicate predicateWithFormat:@"creationDate >= %@ AND creationDate < %@", self.requestDate, [self.requestDate dateByAddingTimeInterval:60*60*48]];
     self.fetchResult = [PHAsset fetchAssetsWithOptions:fetchOptions];
     
     //Get image data
@@ -150,11 +155,38 @@
                         [self.photosArray addObject:photo];
                     }
                     [images addObject:photo];
-                    [self.tableView reloadData];
+                    [self.createTableView reloadData];
                 }
             }
         }];
     }
+}
+
+#pragma mark - Image Picker
+
+- (IBAction)swapButton:(id)sender {
+    self.hitPoint = [sender convertPoint:CGPointZero toView:self.createTableView];
+    self.imagePicker = [[UIImagePickerController alloc] init];
+    self.imagePicker.delegate = self;
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
+}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    NSIndexPath *indexPath = [self.createTableView indexPathForRowAtPoint:self.hitPoint];
+    CreateTableViewCell *cell = (CreateTableViewCell *)[self.createTableView cellForRowAtIndexPath:indexPath];
+    UIImage *pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [pickedImage fixOrientation];
+//    UIImage *fixedImage = [UIImage imageWithCGImage:pickedImage.CGImage scale:1.0 orientation:UIImageOrientationUp];
+    NSLog(@"%ld", (long)pickedImage.imageOrientation);
+    NSData *newImage = [NSData dataWithData:UIImageJPEGRepresentation(pickedImage, 1.0)];
+    cell.photo.photo = newImage;
+    [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
