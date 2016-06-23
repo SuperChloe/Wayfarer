@@ -27,8 +27,7 @@
     self.photo.location = textView.text;
 }
 
--(void)addDoneToolBarToKeyboard:(UITextView *)textView
-{
+-(void)addDoneToolBarToKeyboard:(UITextView *)textView {
     UIToolbar* doneToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
     doneToolbar.barStyle = UIBarStyleDefault;
     UIBarButtonItem *done = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneButtonClickedDismissKeyboard)];
@@ -39,8 +38,7 @@
     textView.inputAccessoryView = doneToolbar;
 }
 
--(void)doneButtonClickedDismissKeyboard
-{
+-(void)doneButtonClickedDismissKeyboard {
     [self.textView resignFirstResponder];
 }
 
