@@ -25,8 +25,6 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
-    
- //   self.sortedEntries = [[Entry allObjects] sortedResultsUsingProperty:@"date" ascending:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

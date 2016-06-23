@@ -32,16 +32,16 @@
     [super viewDidLoad];
 
     //TODAYS DATE
-//    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
+    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
     
     
     //TESTING DATE
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setDay:20];
-    [comps setMonth:10];
-    [comps setYear:2015];
-    NSDate *test = [[NSCalendar currentCalendar] dateFromComponents:comps];
-    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:test];
+//    NSDateComponents *comps = [[NSDateComponents alloc] init];
+//    [comps setDay:20];
+//    [comps setMonth:10];
+//    [comps setYear:2015];
+//    NSDate *test = [[NSCalendar currentCalendar] dateFromComponents:comps];
+//    self.requestDate = [[NSCalendar currentCalendar] startOfDayForDate:test];
     
     self.createTableView.delegate = self;
     self.createTableView.dataSource = self;
@@ -64,18 +64,23 @@
 #pragma mark - Save Button/Realm saving
 
 - (IBAction)saveEntry:(id)sender {
-    Entry *newEntry = [[Entry alloc] init];
-    newEntry.date = self.requestDate;
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    for (Photo *photo in self.photosArray) {
-        photo.entry = newEntry;
-        [newEntry.photos addObject:photo];
-        [realm addObject:photo];
+    if (self.photosArray.count != 0) {
+        Entry *newEntry = [[Entry alloc] init];
+        newEntry.date = self.requestDate;
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        for (Photo *photo in self.photosArray) {
+            photo.entry = newEntry;
+            [newEntry.photos addObject:photo];
+            [realm addObject:photo];
+        }
+        [realm addObject:newEntry];
+        [realm commitWriteTransaction];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    } else {
+        // TODO: Add Alert
+        NSLog(@"You don't have any photos!");
     }
-    [realm addObject:newEntry];
-    [realm commitWriteTransaction];
-    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
@@ -96,12 +101,6 @@
 }
 
 - (void)configureCell:(CreateTableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath {
-//    cell.textView.delegate = cell;
-//    cell.textView.editable = YES;
-//    NSArray *sortedKeys = [self.locationDictionary.allKeys sortedArrayUsingSelector:@selector(compare:)];
-//    NSArray *images = [self.locationDictionary objectForKey:sortedKeys[indexPath.row]];
-//    Photo *photo = images[0];
-    
     cell.photo = self.photosArray[indexPath.row];
 
     cell.photoView.image = [UIImage imageWithData:cell.photo.photo];
