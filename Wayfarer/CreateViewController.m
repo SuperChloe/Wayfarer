@@ -78,8 +78,12 @@
         [realm commitWriteTransaction];
         [self.navigationController popToRootViewControllerAnimated:YES];
     } else {
-        // TODO: Add Alert
-        NSLog(@"You don't have any photos!");
+        UIAlertController *noPhotosAlert = [UIAlertController alertControllerWithTitle:@"No Photos!" message:@"You need to take some photos today in order to create an entry." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        
+        [noPhotosAlert addAction:defaultAction];
+        [self presentViewController:noPhotosAlert animated:YES completion:nil];
     }
 }
 
