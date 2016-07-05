@@ -59,8 +59,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    EntryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EntryCell" forIndexPath:indexPath];
     Entry *entry = self.sortedEntries[indexPath.row];
+    EntryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EntryCell" forIndexPath:indexPath];
     NSMutableAttributedString *kerning = [[NSMutableAttributedString alloc] initWithString:([[NSDateFormatter localizedStringFromDate:entry.date dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle] uppercaseString])];
     [kerning addAttribute:NSKernAttributeName
                         value:@4

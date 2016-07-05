@@ -78,12 +78,7 @@
         [realm commitWriteTransaction];
         [self.navigationController popToRootViewControllerAnimated:YES];
     } else {
-        UIAlertController *noPhotosAlert = [UIAlertController alertControllerWithTitle:@"No Photos!" message:@"You need to take some photos today in order to create an entry." preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        }];
-        
-        [noPhotosAlert addAction:defaultAction];
-        [self presentViewController:noPhotosAlert animated:YES completion:nil];
+        [self showNoPhotosAlert];
     }
 }
 
@@ -118,6 +113,9 @@
     PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
     fetchOptions.predicate = [NSPredicate predicateWithFormat:@"creationDate >= %@ AND creationDate < %@", self.requestDate, [self.requestDate dateByAddingTimeInterval:60*60*48]];
     self.fetchResult = [PHAsset fetchAssetsWithOptions:fetchOptions];
+    if (self.fetchResult.count < 1) {
+        [self showNoPhotosAlert];
+    }
     
     //Get image data
     PHImageManager *imageManager = [[PHImageManager alloc] init];
@@ -189,5 +187,18 @@
     cell.photo.photo = newImage;
     [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - Alert
+
+- (void)showNoPhotosAlert {
+    UIAlertController *noPhotosAlert = [UIAlertController alertControllerWithTitle:@"No Photos!" message:@"You need to take some photos today in order to create an entry." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    
+    [noPhotosAlert addAction:defaultAction];
+    [self presentViewController:noPhotosAlert animated:YES completion:nil];
+
+}
+
 
 @end
