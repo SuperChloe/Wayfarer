@@ -139,7 +139,9 @@
     self.fetchResult = [PHAsset fetchAssetsWithOptions:fetchOptions];
     
     if (self.fetchResult.count < 1) {
-        [self showNoPhotosAlert];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showNoPhotosAlert];
+        });
     }
 
     //Get image data
