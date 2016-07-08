@@ -50,7 +50,25 @@
     self.photosArray = [[NSMutableArray alloc] init];
     [self.locationDictionary removeAllObjects];
     [self.photosArray removeAllObjects];
-    [self imageRequest];
+    
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    if (status == PHAuthorizationStatusAuthorized) {
+        // Authorized
+        [self imageRequest];
+    } else if (status == PHAuthorizationStatusDenied) {
+        // Pop-up, need authorization
+        [self showNoPermissionAlert];
+    } else if (status == PHAuthorizationStatusNotDetermined) {
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            if (status == PHAuthorizationStatusAuthorized) {
+                // Authorized
+                [self imageRequest];
+            } else {
+                // Pop-up, need authorization
+                [self showNoPermissionAlert];
+            }
+        }];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -109,14 +127,21 @@
 #pragma mark - Retrieving image/location methods
 
 - (void)imageRequest {
+    // Check if there is permission
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    if (status == PHAuthorizationStatusDenied) {
+        [self showNoPermissionAlert];
+    }
+    
     //Fetch todays photos
     PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
     fetchOptions.predicate = [NSPredicate predicateWithFormat:@"creationDate >= %@ AND creationDate < %@", self.requestDate, [self.requestDate dateByAddingTimeInterval:60*60*48]];
     self.fetchResult = [PHAsset fetchAssetsWithOptions:fetchOptions];
+    
     if (self.fetchResult.count < 1) {
         [self showNoPhotosAlert];
     }
-    
+
     //Get image data
     PHImageManager *imageManager = [[PHImageManager alloc] init];
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
@@ -198,6 +223,16 @@
     [noPhotosAlert addAction:defaultAction];
     [self presentViewController:noPhotosAlert animated:YES completion:nil];
 
+}
+
+- (void)showNoPermissionAlert {
+    UIAlertController *noPermissionAlert = [UIAlertController alertControllerWithTitle:@"Permission Denied" message:@"You need to allow Photos permission to create an entry." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    
+    [noPermissionAlert addAction:defaultAction];
+    [self presentViewController:noPermissionAlert animated:YES completion:nil];
+    
 }
 
 

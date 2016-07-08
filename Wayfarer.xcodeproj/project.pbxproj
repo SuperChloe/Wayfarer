@@ -225,7 +225,7 @@
 				TargetAttributes = {
 					89F7913D1C69138B004DC2FD = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = E6AQH2F3ME;
+						DevelopmentTeam = U88Q589DZB;
 					};
 				};
 			};
@@ -441,9 +441,10 @@
 			baseConfigurationReference = 49D346B45CD962DC4ECEFC99 /* Pods-Wayfarer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chloe Horgan (9QEMNVWDWU)";
 				INFOPLIST_FILE = Wayfarer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chloehorgan.Wayfarer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chloehorgan.WayfarerApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -453,9 +454,10 @@
 			baseConfigurationReference = 569871FE152A3D1363490923 /* Pods-Wayfarer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chloe Horgan (9QEMNVWDWU)";
 				INFOPLIST_FILE = Wayfarer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chloehorgan.Wayfarer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chloehorgan.WayfarerApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
