@@ -86,17 +86,4 @@
     }
 }
 
-//#pragma mark - Alert
-//
-//- (void)showNoPermissionAlert {
-//    UIAlertController *noPermissionAlert = [UIAlertController alertControllerWithTitle:@"Permission Denied" message:@"You need to allow Photos permission to create an entry." preferredStyle:UIAlertControllerStyleAlert];
-//    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//    }];
-//    
-//    [noPermissionAlert addAction:defaultAction];
-//    [self presentViewController:noPermissionAlert animated:YES completion:nil];
-//    
-//}
-
-
 @end
