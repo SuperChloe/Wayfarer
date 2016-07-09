@@ -132,18 +132,19 @@
     if (status == PHAuthorizationStatusDenied) {
         [self showNoPermissionAlert];
     }
-    
+    NSLog(@"after possibly having shown the permissions alert");
     //Fetch todays photos
     PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
     fetchOptions.predicate = [NSPredicate predicateWithFormat:@"creationDate >= %@ AND creationDate < %@", self.requestDate, [self.requestDate dateByAddingTimeInterval:60*60*48]];
     self.fetchResult = [PHAsset fetchAssetsWithOptions:fetchOptions];
-    
+    NSLog(@"after starting the fetch");
+    NSLog(@"%i", self.fetchResult.count);
     if (self.fetchResult.count < 1) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self showNoPhotosAlert];
         });
     }
-
+    
     //Get image data
     PHImageManager *imageManager = [[PHImageManager alloc] init];
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
@@ -162,6 +163,8 @@
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     PHAsset *asset = inputArray[0];
     NSData *imageData = inputArray[1];
+    NSString *defaultLocationName = @"Unknown Location";
+    
     if (asset.location) {
         CreateViewController * __weak weakSelf = self;
         [geocoder reverseGeocodeLocation:asset.location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
@@ -171,23 +174,32 @@
             } else {
                 // Sorting into locationDictionary
                 if (placemarks[0].subLocality) {
-                    if (![weakSelf.locationDictionary objectForKey:placemarks[0].subLocality]) {
-                        [weakSelf.locationDictionary setObject:[[NSMutableArray alloc] init] forKey:placemarks[0].subLocality];
-                    }
-                    NSMutableArray *images = [weakSelf.locationDictionary valueForKey:placemarks[0].subLocality];
-                    
-                    Photo *photo = [[Photo alloc] init];
-                    photo.location = placemarks[0].subLocality;
-                    photo.photo = imageData;
-                    if (images.count == 0) {
-                        [self.photosArray addObject:photo];
-                    }
-                    [images addObject:photo];
-                    [self.createTableView reloadData];
+                    [weakSelf addPhotoWithImageData:imageData location:placemarks[0].subLocality];
+                } else {
+                    [weakSelf addPhotoWithImageData:imageData location:defaultLocationName];
                 }
             }
         }];
+    } else {
+        [self addPhotoWithImageData:imageData location:defaultLocationName];
     }
+}
+
+- (void)addPhotoWithImageData:(NSData *)imageData location:(NSString *)location {
+    if (![self.locationDictionary objectForKey:location]) {
+        [self.locationDictionary setObject:[[NSMutableArray alloc] init] forKey:location];
+    }
+    NSMutableArray *images = [self.locationDictionary valueForKey:location];
+    
+    Photo *photo = [[Photo alloc] init];
+    photo.location = location;
+    photo.photo = imageData;
+    if (images.count == 0) {
+        [self.photosArray addObject:photo];
+    }
+    [images addObject:photo];
+    [self.createTableView reloadData];
+
 }
 
 #pragma mark - Image Picker
